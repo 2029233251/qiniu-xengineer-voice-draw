@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VoxCanvas Lab | AI Voice Drawing Tool</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">VC</span>
+          <div>
+            <h1>VoxCanvas Lab</h1>
+            <p>AI Voice Drawing Tool</p>
+          </div>
+        </div>
+        <div class="toolbar" aria-label="studio controls">
+          <div class="meter" id="costMeter">
+            <span>Local</span>
+            <strong>0 cloud calls</strong>
+          </div>
+          <label class="select-wrap">
+            <span>Lang</span>
+            <select id="languageSelect">
+              <option value="zh-CN" selected>中文</option>
+              <option value="en-US">EN</option>
+            </select>
+          </label>
+          <button id="micButton" class="primary-button" type="button" aria-pressed="false">
+            <span class="button-dot"></span>
+            <span id="micLabel">Start Mic</span>
+          </button>
+          <button id="undoButton" class="icon-button" type="button" title="Undo" aria-label="Undo">↶</button>
+          <button id="redoButton" class="icon-button" type="button" title="Redo" aria-label="Redo">↷</button>
+          <button id="downloadButton" class="icon-button" type="button" title="Export PNG" aria-label="Export PNG">⇩</button>
+          <button id="clearButton" class="danger-button" type="button">Clear</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="stage" aria-label="drawing stage">
+          <div class="stage-header">
+            <div>
+              <span class="eyebrow">Live canvas</span>
+              <h2 id="sceneTitle">Untitled voice sketch</h2>
+            </div>
+            <div class="latency-pill" id="latencyPill">idle</div>
+          </div>
+          <div class="canvas-frame">
+            <canvas id="drawingCanvas" width="1280" height="760" aria-label="voice controlled drawing canvas"></canvas>
+            <div class="listening-ring" id="listeningRing" aria-hidden="true"></div>
+          </div>
+          <div class="transcript-strip" aria-live="polite">
+            <span>Heard</span>
+            <strong id="transcriptText">Say a drawing command after starting the mic.</strong>
+          </div>
+        </section>
+
+        <aside class="control-rail" aria-label="voice drawing console">
+          <section class="panel">
+            <div class="panel-heading">
+              <span class="eyebrow">Command stack</span>
+              <strong id="commandCount">0 actions</strong>
+            </div>
+            <div id="actionList" class="action-list" aria-live="polite"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <span class="eyebrow">Voice grammar</span>
+              <strong>supported</strong>
+            </div>
+            <div class="command-chips" id="commandChips">
+              <button type="button" data-command="draw a sunset background with mountains and a river">sunset scene</button>
+              <button type="button" data-command="画一个蓝天背景，有三朵白云和四朵粉色花">蓝天花云</button>
+              <button type="button" data-command="draw a red circle at center radius 90">red circle</button>
+              <button type="button" data-command="在左边画蓝色房子">蓝色房子</button>
+              <button type="button" data-command="draw five yellow stars at the top">five stars</button>
+              <button type="button" data-command="在下方写你好">写你好</button>
+              <button type="button" data-command="make a forest with three trees and a moon">forest moon</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <span class="eyebrow">Execution</span>
+              <strong id="confidenceScore">ready</strong>
+            </div>
+            <div class="status-grid">
+              <div>
+                <span>Parser</span>
+                <strong id="parserStatus">local semantic rules</strong>
+              </div>
+              <div>
+                <span>Fallback</span>
+                <strong id="fallbackStatus">phrase repair</strong>
+              </div>
+              <div>
+                <span>Queue</span>
+                <strong id="queueStatus">empty</strong>
+              </div>
+              <div>
+                <span>Cost</span>
+                <strong id="cloudStatus">0 RMB</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <span class="eyebrow">Event log</span>
+              <strong id="logStatus">latest</strong>
+            </div>
+            <ol id="eventLog" class="event-log"></ol>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
