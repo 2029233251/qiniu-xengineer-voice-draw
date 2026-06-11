@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+*.log
+submission/*.zip
+.playwright-cli/
+submission/demo/*.aiff
+submission/demo/*.mp4
