@@ -1,0 +1,10 @@
+{
+  "name": "qiniu-xengineer-voice-draw",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 5178",
+    "check": "node tests/parser-smoke.mjs"
+  }
+}
