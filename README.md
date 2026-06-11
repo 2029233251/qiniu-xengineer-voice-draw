@@ -74,6 +74,8 @@ npm run check
 
 ## Demo 视频
 
-见 [submission/demo/voxcanvas-demo.webm](submission/demo/voxcanvas-demo.webm)。
+公开视频：[https://files.catbox.moe/tzdm5n.webm](https://files.catbox.moe/tzdm5n.webm)。
+
+仓库本地副本路径：`submission/demo/voxcanvas-demo.webm`。
 
 录屏展示了复杂指令拆解、基础图形、组合场景、文字绘制和撤销。旁白文本见 [submission/demo/narration.txt](submission/demo/narration.txt)，录制脚本见 [docs/demo-script.md](docs/demo-script.md)。
