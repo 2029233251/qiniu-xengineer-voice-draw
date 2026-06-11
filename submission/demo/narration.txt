@@ -1,0 +1,11 @@
+VoxCanvas Lab is my submission for the Qiniu XEngineer fourth batch challenge, topic two, AI voice drawing tool.
+
+The app is a browser based drawing studio controlled by voice commands. After the microphone is started, the user can say a sentence such as draw a sunset background with mountains and a river. The local parser decomposes the sentence into a background, a sun, mountains, and a river, then executes these operations on Canvas.
+
+The second example is draw five yellow stars at the top. The parser recognizes the number, color, object, and position, then creates five star operations. The action stack on the right keeps the drawing process transparent.
+
+The third example is draw a blue house on the left. This shows object drawing with color and position control.
+
+The final example is write hello near the bottom, followed by undo. This demonstrates text rendering and editing commands.
+
+The key design decision is cost control. The current version uses browser speech recognition, local semantic rules, and local Canvas rendering. It does not upload audio, canvas data, or command history, and it makes zero cloud model calls by default. If a future cloud model fallback is added, it should only be used when local parsing fails.
